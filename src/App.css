@@ -14,7 +14,6 @@
 .users li {
   flex: 0 0 calc(33.33% - 80px);
   list-style: none;
-  display: flex;
   background-color: white;
   box-shadow: 0 0 10px grey;
   border-radius: 10px;

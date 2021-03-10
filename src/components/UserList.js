@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import User from "./User";
 
 export const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -11,41 +12,19 @@ export const UserList = () => {
     console.log(users);
   }, []);
 
-  const [isHidden, setHide] = useState(false);
-
   return (
     <ul class="users">
-      {users.map((user) => {
+      {users.map((user, index) => {
         return (
-          <li key={user.login.uuid}>
-            <div class="header">
-              <img
-                src={user.picture.medium}
-                alt={user.name.first + "-" + user.name.last}
-              ></img>
-              <h2>
-                {user.name.first} {user.name.last}
-              </h2>
-            </div>
-
-            <button
-              onClick={() => {
-                isHidden ? setHide(false) : setHide(true);
-              }}
-            >
-              Details
-            </button>
-
-            {isHidden ? (
-              <div class="details">
-                <p>Email: {user.email}</p>
-                <p>Cell: {user.cell}</p>
-                <p>Home: {user.phone}</p>
-              </div>
-            ) : (
-              <div class="details"></div>
-            )}
-          </li>
+          <User
+            key={user.login.uuid}
+            index={index}
+            name={user.name.first + " " + user.name.last}
+            headshot={user.picture.medium}
+            email={user.email}
+            cell={user.cell}
+            home={user.phone}
+          />
         );
       })}
     </ul>
